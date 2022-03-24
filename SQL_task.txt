@@ -1,0 +1,18 @@
+Запрос 1.
+
+SELECT name FROM Table1 INNER JOIN Table3 ON Table1.pilot_id = Table3.second_pilot_id 
+WHERE flight_dt BETWEEN ‘2021-08-01’ AND ‘2021-08-31’ AND destination = "Шереметьево"
+GROUP BY pilot_id HAVING COUNT(flight_id) = 3;
+
+Запрос 2.
+
+SELECT name FROM Table1 INNER JOIN Table3 ON Table1.pilot_id = Table3.first_pilot_id OR Table1.pilot_id = Table3.second_pilot_id 
+INNER JOIN Table2 ON Table1.plane_id = Table2.plane_id
+WHERE age > 45 AND quantity > 30 AND cargo_flg = 0;
+
+Запрос 3.
+
+SELECT name FROM Table1 INNER JOIN Table3 ON Table1.pilot_id = Table3.first_pilot_id
+INNER JOIN planes ON Table3.plane_id = Table2.plane_id
+WHERE cargo_flg = 1 AND flight_dt BETWEEN ‘2021-08-01’ AND ‘2021-08-31’
+GROUP BY pilot_id ORDER BY COUNT(flight_id) DESC LIMIT 10;
